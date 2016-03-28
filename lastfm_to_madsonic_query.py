@@ -49,19 +49,19 @@ def process_track(track):
 
 def build_count_statement(title, count):
     try:
-        print "UPDATE media_file " + "SET PLAY_COUNT=" + count + " WHERE TYPE='MUSIC' AND TITLE='" + title.replace('\'','\'\'') + "';";
+        print "UPDATE media_file " + "SET PLAY_COUNT=" + count + " WHERE TYPE='MUSIC' AND UPPER(TITLE)='UPPER(" + title.replace('\'','\'\'') + "');";
     except:
         pass
 
 def build_date_statement(title, date):
     try:
-        print "UPDATE media_file " + "SET LAST_PLAYED='" + get_date(date) + "' WHERE TYPE='MUSIC' AND TITLE='" + title.replace('\'','\'\'') + "';";
+        print "UPDATE media_file " + "SET LAST_PLAYED='" + get_date(date) + "' WHERE TYPE='MUSIC' AND UPPER(TITLE)=UPPER('" + title.replace('\'','\'\'') + "');";
     except:
         pass
 
 def build_statement(title, playcount, date):
 	try:
-		f.write("UPDATE media_file " + "SET PLAY_COUNT=" + playcount + ", LAST_PLAYED='" + get_date(date) + "' WHERE TYPE='MUSIC' AND TITLE='" + title.replace('\'','\'\'') + "';\n");
+		f.write("UPDATE media_file " + "SET PLAY_COUNT=" + playcount + ", LAST_PLAYED='" + get_date(date) + "' WHERE TYPE='MUSIC' AND UPPER(TITLE)=UPPER('" + title.replace('\'','\'\'') + "');\n");
 	except:
 		pass
 
